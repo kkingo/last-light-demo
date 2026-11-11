@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#080a0c" />
+    <meta name="description" content="在宇宙最后的微光里，拾起那些尚未消失的记忆。一场关于时间、遗忘与新生的 Three.js 交互式宇宙漫游。" />
+    <title>时间的尽头 · LAST LIGHT</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23080a0c'/%3E%3Ccircle cx='24' cy='24' r='12' fill='none' stroke='%23d5c19a' stroke-width='2'/%3E%3Cellipse cx='24' cy='24' rx='21' ry='6' transform='rotate(-25 24 24)' fill='none' stroke='%23d5c19a'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="universe" tabindex="-1" aria-label="可交互的时间尽头宇宙场景"></div>
+    <div class="scene-shade" aria-hidden="true"></div>
+    <div class="film-grain" aria-hidden="true"></div>
+    <div id="fragment-labels" aria-label="散落的记忆碎片"></div>
+
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="最后的微光观测站，重置视角" id="brand-reset">
+        <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="12.5"/><ellipse cx="24" cy="24" rx="23" ry="6.5" transform="rotate(-35 24 24)"/><path d="M24 4v4M24 40v4"/></svg>
+        <span><strong>LAST LIGHT</strong><small>最后的微光 · 观测站 001</small></span>
+      </a>
+      <nav class="top-actions" aria-label="作品工具">
+        <button class="text-button archive-trigger" id="archive-button"><span class="tiny-square" aria-hidden="true"></span>宇宙档案<span class="action-en">ARCHIVE</span></button>
+        <span class="tool-divider" aria-hidden="true"></span>
+        <button class="icon-button" id="audio-button" aria-label="开启声音" title="声音 · M" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-slash" d="m17 9 5 6m0-6-5 6"/></svg></button>
+        <button class="icon-button" id="fullscreen-button" aria-label="进入全屏" title="全屏"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+        <button class="icon-button help-trigger" id="help-button" aria-label="查看操作指南" title="操作指南 · H"><span class="help-glyph">?</span></button>
+      </nav>
+    </header>
+
+    <main class="experience-ui">
+      <section class="hero" aria-labelledby="work-title">
+        <div class="eyebrow"><span class="status-light"></span><span>AN INTERACTIVE COSMIC POEM</span></div>
+        <h1 id="work-title"><span>时间的</span><span class="title-last">尽头<span class="title-period">。</span></span></h1>
+        <div class="hero-english">THE END OF TIME</div>
+        <p class="hero-description">当最后一颗恒星熄灭，<br />还有什么，值得被宇宙记住。</p>
+        <button class="explore-button" id="explore-button"><span class="explore-orbit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></span><span><strong>进入视界</strong><small>ENTER THE INFINITE</small></span></button>
+      </section>
+
+      <aside class="coordinates" aria-label="场景坐标">
+        <span class="coordinate-line"></span>
+        <div class="coordinate-label">BEYOND THE KNOWN</div>
+        <p>α 00h 00m 00s<br />δ +00° 00′ 00″</p>
+        <span class="coordinate-caption">此处，时间不再有方向</span>
+      </aside>
+
+      <aside class="collection-panel" aria-label="记忆收集进度">
+        <div class="collection-top"><span>记忆残片</span><span class="collection-count"><b id="collected-count">00</b><span> / 05</span></span></div>
+        <div class="memory-pips" id="memory-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <p id="collection-hint">寻找星海中闪烁的光点</p>
+        <button class="rebirth-button" id="rebirth-button" hidden><span>唤醒一颗新星</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5"/></svg></button>
+      </aside>
+
+      <div class="explore-caption" aria-hidden="true"><span>THE END OF TIME</span><span>时间的尽头</span></div>
+      <div class="hold-indicator" aria-hidden="true"><span></span>时间正在减速</div>
+
+      <footer class="bottom-bar">
+        <div class="interaction-hints"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="6" y="2" width="8" height="13" rx="4"/><path d="M10 5v3M3 10l-2 2 2 2m14-4 2 2-2 2"/></svg>拖拽环绕</span><span class="desktop-hint">滚轮靠近</span><span class="desktop-hint">长按减速</span><span class="touch-hint">双指缩放</span></div>
+        <div class="timeline" aria-label="宇宙时间控制">
+          <div class="timeline-head"><span class="timeline-label">宇宙纪元</span><span class="time-readout" id="time-readout">10<sup>100</sup> 年之后</span><button id="pause-button" class="pause-button" aria-label="暂停时间" aria-pressed="false" title="暂停时间 · 空格"><svg class="pause-symbol" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 3v8m4-8v8"/></svg><svg class="play-symbol" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="m4 2 7 5-7 5Z"/></svg></button></div>
+          <label class="sr-only" for="time-slider">移动时间，在余晖、静寂与新生之间穿梭</label>
+          <input id="time-slider" class="time-slider" type="range" min="0" max="1000" step="1" value="0" aria-valuetext="余晖" />
+          <div class="chapter-labels"><button data-era="0" class="active"><span>01</span> 余晖</button><button data-era="0.5"><span>02</span> 静寂</button><button data-era="1"><span>03</span> 新生</button></div>
+        </div>
+        <div class="view-tools"><button id="quality-button" class="utility-button" title="切换画质">画质 <span id="quality-label">精致</span></button><span class="view-separator"></span><button id="reset-button" class="utility-button" title="重置视角 · R"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 5A6 6 0 1 1 3 10M4.5 1.5V5H1"/></svg><span>归位</span></button></div>
+      </footer>
+    </main>
+
+    <div id="loading" class="loading-screen" role="status"><div class="loading-orbit" aria-hidden="true"></div><span>正在接收宇宙最后的光</span><small>ESTABLISHING A CONNECTION WITH INFINITY</small></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <section class="memory-reveal" id="memory-reveal" aria-label="新发现的记忆" aria-live="polite" hidden><button class="memory-close icon-button" id="memory-close" aria-label="关闭记忆"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button><span class="memory-label" id="memory-label">MEMORY 01 / 05</span><h2 id="memory-title"></h2><p id="memory-text"></p><span class="memory-footnote">一些事物，连时间也无法带走。</span></section>
+
+    <dialog id="archive-dialog" class="archive-dialog" aria-labelledby="archive-title">
+      <button class="dialog-close icon-button" data-close="archive-dialog" aria-label="关闭宇宙档案"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <span class="dialog-kicker">LAST LIGHT / PERSONAL ARCHIVE</span><h2 id="archive-title">宇宙遗忘的，<br /><em>我们替它记得。</em></h2><p class="archive-intro">这里没有终点的答案。只有五段穿过漫长黑夜、仍在发光的记忆。点击星海中的标记，将它们带回这座观测站。</p>
+      <ol class="archive-memories" id="archive-memories"></ol>
+      <p class="archive-note">一首可以漫游的宇宙诗。天文坐标与纪元属于艺术叙事，并非科学模拟。</p>
+    </dialog>
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title">
+      <button class="dialog-close icon-button" data-close="help-dialog" aria-label="关闭操作指南"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <span class="dialog-kicker">A SMALL GUIDE TO INFINITY</span><h2 id="help-title">慢一点，<br /><em>宇宙没有在赶时间。</em></h2>
+      <dl class="help-list"><div><dt>拖拽画面</dt><dd>围绕视界自由观察</dd></div><div><dt>滚动鼠标 / 双指缩放</dt><dd>靠近或远离宇宙中心</dd></div><div><dt>长按空白处</dt><dd>让流动的时间慢下来</dd></div><div><dt>点击发光的菱形标记</dt><dd>找回五段遗落的记忆</dd></div><div><dt>拖动底部时间轴</dt><dd>穿梭余晖、静寂与新生</dd></div><div><dt>集齐全部记忆</dt><dd>唤醒一颗属于你的新星</dd></div></dl>
+      <p class="keyboard-shortcuts"><kbd>空格</kbd> 暂停 <kbd>R</kbd> 归位 <kbd>M</kbd> 声音 <kbd>H</kbd> 指南</p>
+      <p class="archive-note">建议佩戴耳机，开启声音，在全屏中缓慢探索。</p>
+    </dialog>
+    <noscript><div class="noscript-message">这场宇宙漫游需要启用 JavaScript。请在浏览器设置中允许 JavaScript 后刷新。</div></noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
